@@ -11,6 +11,7 @@ export const createTodo = async (req, res) => {
     await todo.save();
     res.status(201).json(todo);
   } catch (error) {
+    console.log(error)
     res.status(400).json({ error: 'Error creating ToDo' });
   }
 };
@@ -20,6 +21,7 @@ export const getTodos = async (req, res) => {
     const todos = await ToDo.find({ userId: req.user.userId });
     res.json(todos);
   } catch (error) {
+    console.log(error)
     res.status(400).json({ error: 'Error fetching ToDos' });
   }
 };
@@ -37,6 +39,7 @@ export const updateTodo = async (req, res) => {
 
     res.json(updatedToDo);
   } catch (error) {
+    console.log(error)
     res.status(400).json({ error: 'Error updating ToDo' });
   }
 };
@@ -47,6 +50,7 @@ export const deleteTodo = async (req, res) => {
     await ToDo.findOneAndDelete({ _id: id, userId: req.user.userId });
     res.json({ message: 'ToDo deleted' });
   } catch (error) {
+    console.log(error)
     res.status(400).json({ error: 'Error deleting ToDo' });
   }
 };

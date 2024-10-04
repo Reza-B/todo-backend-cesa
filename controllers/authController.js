@@ -13,6 +13,7 @@ export const register = async (req, res) => {
 
     res.status(201).json({ message: 'User created successfully' });
   } catch (error) {
+    console.log(error)
     res.status(400).json({ error: 'Error creating user' });
   }
 };
@@ -30,6 +31,7 @@ export const login = async (req, res) => {
     const token = jwt.sign({ userId: user._id }, jwtSecret, { expiresIn: '1h' });
     res.json({ token });
   } catch (error) {
+    console.log(error)
     res.status(400).json({ error: 'Login error' });
   }
 };
